@@ -1,0 +1,343 @@
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s;
+  z-index: 1000;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+}
+.navbar.scrolled {
+    background-color: #d3d3d3; /* Cambia el color al hacer scroll */
+}
+.navbar-container {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center;
+  padding: 1rem;
+  gap: 2rem; /* Espacio entre los elementos principales (logo, links, acciones) */
+  width: 80%;
+  margin: 0px auto;
+}
+
+.logo-container {
+  margin-right: auto; /* Mueve el logo hacia la izquierda */
+}
+
+.nav-actions {
+  margin-left: auto; /* Mueve las acciones (search y toggle) hacia la derecha */
+  display: flex;
+}
+
+.palette-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: #63b3ed;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.search-input {
+  height: 20px;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: var(--input-bg);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--icon-color);
+  transition: color 0.3s;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem;
+  color: var(--icon-color);
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Espacio a la izquierda del switch */
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px; /* Ancho del interruptor */
+  height: 20px; /* Alto del interruptor */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3498db; /* Color de fondo inicial (azul) */
+  border-radius: 20px;
+  transition: background-color 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; /* Altura del círculo */
+  width: 16px; /* Ancho del círculo */
+  left: 2px; /* Espaciado desde la izquierda */
+  bottom: 2px; /* Espaciado desde la parte inferior */
+  background-color: white; /* Color del círculo */
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4caf50; /* Color cuando está activado (verde) */
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px); /* Movimiento del círculo al estar activado */
+}
+
+.switchText {
+  margin-left: 5px; /* Espaciado a la izquierda del texto */
+  color: var(--text-color);
+  font-size: 14px; /* Ajustar el tamaño del texto */
+  font-weight: 500; /* Ajustar el grosor del texto */
+}
+
+.logo {
+  margin-left: 10px;
+  color: rgb(73, 73, 73);
+  fill: rgb(73, 73, 73);
+
+  width: 100px; /* Ajusta el tamaño del logo */
+  height: auto;
+  transition: opacity 0.4s;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    padding: 1rem;
+    transition: max-height 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease forwards; /* Añade animación al abrir */
+  }
+  @keyframes slideIn {
+    from {
+        transform: translateY(-100%); /* Comienza fuera de la vista */
+        opacity: 0; /* Comienza invisible */
+    }
+    to {
+        transform: translateY(0); /* Llega a su posición original */
+        opacity: 1; /* Se vuelve visible */
+    }
+}
+
+  .mobile-menu.open {
+    display: block;
+  }
+  
+  .mobile-menu-header {
+    margin-bottom: 1rem;
+  }
+  
+  .mobile-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  .mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mobile-nav-links li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  .mobile-search {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .mobile-search-input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--input-bg);
+    color: var(--input-text-color);
+    width: 100%;
+  }
+  
+  .mobile-theme-switch {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+@media only screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+  .nav-actions {
+    display: none;
+  }
+  .navbar.scrolled {
+    background-color: #1a202c9a; /* Cambia el color al hacer scroll */
+}
+
+@media only screen and (max-width: 900px) {
+    .navbar-container{width: 100%;}
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+        padding-top: 5px;
+        gap: 2rem; /* Espacio entre los elementos principales (logo, links, acciones) */
+        width: 80%;
+        margin: 0px auto;
+      }
+    }
+  }
+  
+
+/* Dark mode styles */
+:root {
+  background-color: #f4f4f4;
+  color: #333;
+  --input-bg: #e0e0e0;
+  --input-text-color: #333;
+  --icon-color: #333;
+  --primary-color: #007bff;
+}
+
+body.dark {
+  background-color: #1a202c;
+  color: #cbd5e0;
+  --input-bg: #2d3748;
+  --input-text-color: #cbd5e0;
+  --icon-color: #f6e05e;
+  --primary-color: #63b3ed;
+  .social-icons svg {
+    fill: #ffffff;
+  }
+  .search-input {
+    color: white;
+  }
+  .logo {
+    color: white;
+    fill: white;
+  }
+}
+.containerTitle {
+  text-align: center;
+  margin-top: 50px;
+}
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 1.2rem;
+}
+.social-section {
+  margin-top: 80px;
+  text-align: center;
+  padding: 40px;
+  border-radius: 8px;
+}
+.blueprint-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.social-text {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+.social-icons a {
+  margin: 0 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+.social-icons svg {
+  width: 40px;
+  height: 40px;
+  fill: #2c2c2c;
+  transition: fill 0.3s ease;
+}
+.social-icons a:hover svg {
+  fill: #1da1f2; /* color para Twitter, puedes cambiar según la red social */
+}
